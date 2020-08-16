@@ -1,0 +1,32 @@
+***real_prop_chamber.C:
+Simulation of the proportional chamber.
+Angle pattern of the chambers are 4. (0, 30, 60, 90 deg)
+Most probable simulation
+
+**prop_chamber.C:(plane approximation, old type)
+Simulation of the proportional chamber.
+Angle pattern of the chambers are 4. (0, 30, 60, 90 deg)
+
+
+*prop_chamber_angle.C:
+Simulation of the proportional chamber.
+Angle dependence is shown.
+
+
+*hist_monte.C:
+This can make a histgram from "montecalro_data.txt"
+
+
+*montecarlo.C (Kajikawa):
+This is simple zenith angle distribution of cosmic rays.
+(Assuming cos^2(theta))
+This does not include any information of detectors.
+
+
+*cos.C (Toyama):
+For the Spark Chamber
+
+
+*solid.C (Kajikawa):
+For the Spark Chamber
+
