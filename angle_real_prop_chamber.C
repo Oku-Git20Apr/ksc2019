@@ -10,6 +10,25 @@ double myfunc(double *x, double *par){
 	return a*pow(cos((x0-5)*pi/180),b)+c;
 }
 
+//Nuclear Instruments and Methods in Physics Research A 555 (2005) 164-172
+double cosmic(double *x, double *par){
+	double theta  = x[0];
+	double E   = 1.;
+	double DE  = 0.02;
+	double gpi = 0.78;
+	double gk  = 0.52;
+	double Bpi = 90.;//GeV
+	double Bk  = 442.;//GeV
+	double br  = 0.635;
+	double gamma = 2.70;
+	double W   = 1.;
+	double factor1 = A*pow(W,-1.*gamma);
+	double factor2 = (pow(gpi,gamma-1.)*Bpi*sec(theta))/(E+DE+Bpi*sec(theta));
+	double factor3 = 0.36*br*(pow(gk,gamma-1.)*Bk*sec(theta))/(E+DE+Bk*sec(theta));
+
+	return factor1*(factor2+factor3);
+}
+
 void angle_real_prop_chamber(const char* output_text_file = "./prop_monte_sim.txt")
 {
   gROOT->Reset();
@@ -34,10 +53,11 @@ void angle_real_prop_chamber(const char* output_text_file = "./prop_monte_sim.tx
 
   for (int i=0; i<nofhist; i++){
     h[i] = new TH1D(Form("Monte_Carlo%d",i),"",100,-5,95);
-	for (int j=0; j<238*91/4; j++) {//loop (=total number of events)
+	for (int j=0; j<238000*91/4; j++) {//loop (=total number of events)
 		value = cos_rand(1+(double)i*1.);
 		h[i]->Fill(value);
 	}
+	h[i]->Scale(1./1000.);
   }
   
 
